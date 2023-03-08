@@ -1,6 +1,8 @@
 package main
 
 import (
+	"flag"
+
 	uuidPasswordGenerator "vpn-guest-bot/internal/adapter/passwordGenerator/uuid"
 	memoryScheduler "vpn-guest-bot/internal/adapter/scheduler/memory"
 	"vpn-guest-bot/internal/adapter/vpnManager/l2tpFileManager"
@@ -10,7 +12,10 @@ import (
 )
 
 func main() {
-	cfg, err := config.ParseConfigFile()
+	cfgPath := flag.String("c", "./config.json", "path to config")
+	flag.Parse()
+
+	cfg, err := config.ParseConfigFile(*cfgPath)
 	if err != nil {
 		panic(err)
 	}

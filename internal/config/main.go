@@ -16,8 +16,8 @@ type Config struct {
 	VpnConfigFile string             `json:"vpnConfigFile"`
 }
 
-func ParseConfigFile() (Config, error) {
-	data, err := os.ReadFile("./config.json")
+func ParseConfigFile(path string) (Config, error) {
+	data, err := os.ReadFile(path)
 	if err != nil {
 		return Config{}, errors.Wrap(err, "cannot read file")
 	}
