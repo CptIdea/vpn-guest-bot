@@ -1,0 +1,12 @@
+{
+  "hostInfo": {
+    "host": "localhost",
+    "hostPassword": "some_password",
+    "vpnType": "l2tp"
+  },
+  "botKey": "some bot key",
+  "botAdmins": [
+    123456
+  ],
+  "vpnConfigFile": "/some/path/to/file"
+}
