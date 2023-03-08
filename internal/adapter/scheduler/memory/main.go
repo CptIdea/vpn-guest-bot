@@ -22,7 +22,9 @@ type scheduler struct {
 }
 
 func New() interfaces.Scheduler {
-	return &scheduler{tasks: make(map[string]*taskModel)}
+	s := &scheduler{tasks: make(map[string]*taskModel)}
+	s.run()
+	return s
 }
 
 // AddTask adds a new taskModel to the scheduler.
@@ -55,8 +57,8 @@ func (s *scheduler) CancelTask(name string) {
 
 }
 
-// RunTasks runs all tasks that are due to run.
-func (s *scheduler) RunTasks() {
+// runTasks runs all tasks that are due to run.
+func (s *scheduler) runTasks() {
 	s.mutex.Lock()
 	defer s.mutex.Unlock()
 
@@ -73,4 +75,13 @@ func (s *scheduler) RunTasks() {
 			continue
 		}
 	}
+}
+
+func (s *scheduler) run() {
+	go func() {
+		for {
+			time.Sleep(time.Minute)
+			s.runTasks()
+		}
+	}()
 }

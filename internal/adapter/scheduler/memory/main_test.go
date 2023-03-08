@@ -89,7 +89,7 @@ func TestMemoryScheduler_RunTasks(t *testing.T) {
 	}
 
 	// Run the tasks.
-	s.RunTasks()
+	s.runTasks()
 
 	// Make sure the first taskModel has been run.
 	if !task1Run {
